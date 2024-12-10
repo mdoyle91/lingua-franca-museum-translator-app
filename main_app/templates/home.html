@@ -1,13 +1,32 @@
 {% extends 'base.html' %} {% load static %} {% block head %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}" />
-{% endblock %} {% block content %} {% comment %} ALTER ALL OF THIS
-<section class="logo-container">
-  <div class="cat-container">
-    <img src="{% static 'images/splash.svg' %}" alt="The Cat Collector Cat" />
+{% endblock %} {% block content %}
+<section class="homepage-container">
+  <div class="language-selection">
+    <label for="languages">Select Your Language...</label>
+    <select name="languages" id="languages">
+      <option value="english">English</option>
+      <option value="spanish">Español</option>
+      <option value="portuguese">Portugês</option>
+    </select>
   </div>
-  <img
-    src="{% static 'images/logotype.svg' %}"
-    alt="Text reads: Cat Collector"
-  />
+  <div class="institution-selection">
+    <label for="institutions"
+      >Select the cultural institution you're visiting...</label
+    >
+    <select name="institutions" id="institutions">
+      <option value="museu-afro-brasil">
+        Museu Afro Brasil Emanoel Araujo
+      </option>
+    </select>
+  </div>
+  <div class="exhibition-number">
+    <label for="exhibition-number">Exhibition Number:</label>
+    <input type="number" id="exhibition-number" name="exhibtion-number" />
+  </div>
+  <button id="home-submit">Submit</button>
 </section>
-{% endcomment %} {% endblock %}
+<section class="login">
+  <button id="login">Admin Login</button>
+</section>
+{% endblock %}
