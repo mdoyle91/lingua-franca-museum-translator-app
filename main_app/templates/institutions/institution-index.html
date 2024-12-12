@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/institution/institution-index.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1>Institution List</h1>
+  <img src="{% static 'images/museuafrobrasil.jpg' %}" alt="Museu AfroBrasil" />
+</section>
+
+<section class="card-container">
+  {% for institution in institutions %}
+  <div class="card">
+    <div class="card-content">
+      <div class="card-img-container">
+        <img
+          src="{% static 'images/museuafrobrasil.jpg' %}"
+          alt="Museu AfroBrasil"
+        />
+      </div>
+      <h2 class="card-title">{{ institution.name }}</h2>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
