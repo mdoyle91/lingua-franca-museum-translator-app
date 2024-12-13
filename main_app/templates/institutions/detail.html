@@ -19,7 +19,12 @@
       <h2>Exhibits</h2>
     </div>
     <h3>Add an Exhibit</h3>
-    <form method="post" class="subsection-content" autocomplete="off">
+    <form
+      action="{% url 'add-exhibit' institution.id %}"
+      method="post"
+      class="subsection-content"
+      autocomplete="off"
+    >
       {% csrf_token %} {{ exhibits_form.as_p }}
       <button type="submit" class="btn submit">Add Exhibit</button>
     </form>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 from .models import Exhibit, Institution
 from .forms import ExhibitsForm
@@ -24,6 +24,14 @@ class InstitutionCreate(CreateView):
     model= Institution
     fields = '__all__'
     success_url= '/institutions/'
+
+def add_exhibit(request, institution_id):
+    form = ExhibitForm(request.POST)
+    if form.is_valid():
+        new_exhibit = form.save(commit=False)
+        new_exhibit.institution_id = institution_id
+        new_exhibit.save()
+    return redirect('institution-detail', institution_id=instituion_id)
 
 #  def exhibit_detail(request):  
 #     return render(request, 'exhibits/exhibit-detail.html', {'exhibits': exhibits}) #May need to alter the portin in curly brackets at the end.
