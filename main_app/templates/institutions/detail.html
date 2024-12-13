@@ -3,7 +3,10 @@
 {% endblock %} {% block content %}
 <section class="institution-container">
   <div class="institution-img">
-    <img src="{% static 'images/images/museuafrobrasil.jpg' %}" alt="Mueseu AfroBrasil" />
+    <img
+      src="{% static 'images/images/museuafrobrasil.jpg' %}"
+      alt="Mueseu AfroBrasil"
+    />
   </div>
   <div class="institution-details">
     <h1>{{ institution.name }}</h1>
@@ -15,39 +18,25 @@
     <div class="subsection-title">
       <h2>Exhibits</h2>
     </div>
-    <h3>Add an Exhibit</h3>
-    <form
-      action="{% url 'add-exhibit' institution.id %}"
-      method="post"
-      class="subsection-content"
-      autocomplete="off"
-    >
-      {% csrf_token %} {{ feeding_form.as_p }}
-      <button type="submit" class="btn submit">Add Feeding</button>
-    </form>
-    <h3>Past Feedings</h3>
-{% if cat.feeding_set.all.count %}
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Meal</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for feeding in cat.feeding_set.all %}
-      <tr>
-        <td>{{feeding.date}}</td>
-        <td>{{feeding.get_meal_display}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-{% else %}
-  <div class="subsection-content">
-    <p>⚠️ {{cat.name}} has not been fed!</p>
-  </div>
-{% endif %}
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Exhibit Number</th>
+          <th>Exhibit Description in English</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for exhibit in institution.exhibit_set.all %}
+        <tr>
+          <td>{{exhibit.name}}</td>
+          <td>{{exhibit.exhibit_number}}</td>
+          <td>{{exhibit.english_language_text}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
 </div>
 
 {% endblock %}

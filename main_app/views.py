@@ -15,8 +15,8 @@ def institution_index(request):
     return render(request, 'institutions/index.html', {'institutions': institutions})
 
 def institution_detail(request, institution_id): 
-    institution = Institution.get(id=institution_id)
-    return render(request, 'institutions/index.html', {'institutions': institutions})
+    institution = Institution.objects.get(id=institution_id)
+    return render(request, 'institutions/index.html', {'institution': institution})
 
 class InstitutionCreate(CreateView):
     model= Institution
