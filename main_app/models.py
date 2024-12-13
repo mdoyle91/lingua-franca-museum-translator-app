@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 #from django.contrib.auth.models import User
 
 class Institution(models.Model):
@@ -10,6 +11,9 @@ class Institution(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('institution-detail', kwargs={'institution_id: self.id'})
 
 class Exhibit(models.Model):
     institution_id = models.ForeignKey(Institution, on_delete=models.CASCADE) #Required, look up what to add to ensure it's included

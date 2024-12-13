@@ -9,15 +9,17 @@
 <section class="card-container">
   {% for institution in institutions %}
   <div class="card">
-    <div class="card-content">
-      <div class="card-img-container">
-        <img
-          src="{% static 'images/museuafrobrasil.jpg' %}"
-          alt="Museu AfroBrasil"
-        />
+    <a href="{% url 'institution-detail' institution.id %}">
+      <div class="card-content">
+        <div class="card-img-container">
+          <img
+            src="{% static 'images/museuafrobrasil.jpg' %}"
+            alt="Museu AfroBrasil"
+          />
+        </div>
+        <h2 class="card-title">{{ institution.name }}</h2>
       </div>
-      <h2 class="card-title">{{ institution.name }}</h2>
-    </div>
+    </a>
   </div>
   {% endfor %}
 </section>
