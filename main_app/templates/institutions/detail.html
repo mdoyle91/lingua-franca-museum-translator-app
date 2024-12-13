@@ -18,6 +18,11 @@
     <div class="subsection-title">
       <h2>Exhibits</h2>
     </div>
+    <h3>Add an Exhibit</h3>
+    <form method="post" class="subsection-content" autocomplete="off">
+      {% csrf_token %} {{ exhibits_form.as_p }}
+      <button type="submit" class="btn submit">Add Exhibit</button>
+    </form>
     <table>
       <thead>
         <tr>
@@ -29,7 +34,9 @@
       <tbody>
         {% for exhibit in institution.exhibit_set.all %}
         <tr>
-          <td>{{exhibit.name}}</td>
+          <td>{{exhibit.name }}</td>
+          {% comment %}Will likely add tags here similar to base.html to get it
+          to link to an exhibit deatil page{% endcomment %}
           <td>{{exhibit.exhibit_number}}</td>
           <td>{{exhibit.english_language_text}}</td>
         </tr>

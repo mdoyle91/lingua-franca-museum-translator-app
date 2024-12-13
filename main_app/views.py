@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from .models import Exhibit, Institution
+from .forms import ExhibitsForm
 
 
 
@@ -16,7 +17,8 @@ def institution_index(request):
 
 def institution_detail(request, institution_id): 
     institution = Institution.objects.get(id=institution_id)
-    return render(request, 'institutions/index.html', {'institution': institution})
+    exhibits_form= ExhibitsForm()
+    return render(request, 'institutions/detail.html', {'institution': institution, 'exhibits_form': exhibits_form})
 
 class InstitutionCreate(CreateView):
     model= Institution
