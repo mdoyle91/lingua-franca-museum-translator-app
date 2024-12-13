@@ -37,6 +37,7 @@ class ExhibitUpdate(UpdateView):
     model = Exhibit
     # Let's disallow the renaming of a cat by excluding the name field!
     fields = '__all__'
+    success_url = '/institutions/'
 
 class ExhibitDelete(DeleteView):
     model = Exhibit

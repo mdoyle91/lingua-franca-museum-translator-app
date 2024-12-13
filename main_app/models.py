@@ -28,6 +28,6 @@ class Exhibit(models.Model):
     def __str__(self):
         return self.name
 
-
-    def get_absolute_url(self):
-        return reverse('institution-detail', kwargs={'institution_id: self.id'})
+    # def get_absolute_url(self):
+    #     return reverse('institution-detail', kwargs={'institution_id: self.id'})
+    
