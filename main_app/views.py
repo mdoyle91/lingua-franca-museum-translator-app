@@ -2,14 +2,11 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Exhibit, Institution
 from .forms import ExhibitsForm
+from django.contrib.auth.views import LoginView
 
 
-
-# Create your views here.
-
-
-def home(request):
-    return render(request, 'home.html')
+class Home(LoginView):
+    template_name = 'home.html'
 
 def institution_index(request):
     institutions = Institution.objects.all()

@@ -1,11 +1,11 @@
 from django.db import models
 from django.urls import reverse
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 class Institution(models.Model):
     name = models.TextField(max_length=25)
     location = models.TextField(max_length=25)
-    # user = models.ForeignKey(User) Add this once the User has been created.
+    user = models.ForeignKey(User, on_delete=models.CASCADE) #Add this once the User has been created.
     # Will I want more locations here such as location_english, Location_spanish, location_portugues, so I can render them conditionally based on selected language?
      #user_id = models.ForeignKey(User, on_delete=models.CASCADE) #I think I don't want the on delete Cascade here as that would eliminate the institution if I delete the user, and this is ideally going to be a many-to-many relationship.
 
