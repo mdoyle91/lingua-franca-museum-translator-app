@@ -3,6 +3,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Exhibit, Institution
 from .forms import ExhibitsForm
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class Home(LoginView):
@@ -17,11 +19,14 @@ def institution_detail(request, institution_id):
     exhibits_form= ExhibitsForm()
     return render(request, 'institutions/detail.html', {'institution': institution, 'exhibits_form': exhibits_form})
 
-class InstitutionCreate(CreateView):
+class InstitutionCreate(LoginRequiredMixin, CreateView):
     model= Institution
     fields = '__all__'
-    success_url= '/institutions/'
+    def form_valid(self, form):
+        form.instance.user = self.request.user  
+        return super().form_valid(form)
 
+@login_required
 def add_exhibit(request, institution_id):
     form = ExhibitsForm(request.POST)
     if form.is_valid():
@@ -30,13 +35,13 @@ def add_exhibit(request, institution_id):
         new_exhibit.save()
     return redirect('institution-detail', institution_id=institution_id)
 
-class ExhibitUpdate(UpdateView):
+class ExhibitUpdate(LoginRequiredMixin, UpdateView):
     model = Exhibit
     # Let's disallow the renaming of a cat by excluding the name field!
     fields = '__all__'
     success_url = '/institutions/'
 
-class ExhibitDelete(DeleteView):
+class ExhibitDelete(LoginRequiredMixin, DeleteView):
     model = Exhibit
     success_url = '/institutions/'
 
