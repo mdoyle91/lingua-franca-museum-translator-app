@@ -26,7 +26,7 @@ class InstitutionCreate(CreateView):
     success_url= '/institutions/'
 
 def add_exhibit(request, institution_id):
-    form = ExhibitForm(request.POST)
+    form = ExhibitsForm(request.POST)
     if form.is_valid():
         new_exhibit = form.save(commit=False)
         new_exhibit.institution_id = institution_id

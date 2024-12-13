@@ -9,7 +9,7 @@
 <form action="" method="post" class="form">
   {% csrf_token %}
   <a
-    href="{% url 'institution-detail' institution.id exhibit.id %}"
+    href="{% url 'institution-detail' exhibit.institution_id.id %}"
     class="btn secondary"
     >Cancel</a
   >
