@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Exhibit, Institution
 from .forms import ExhibitsForm
 
@@ -32,6 +32,15 @@ def add_exhibit(request, institution_id):
         new_exhibit.institution_id = institution_id
         new_exhibit.save()
     return redirect('institution-detail', institution_id=instituion_id)
+
+class ExhibitUpdate(UpdateView):
+    model = Exhibit
+    # Let's disallow the renaming of a cat by excluding the name field!
+    fields = '__all__'
+
+class ExhibitDelete(DeleteView):
+    model = Exhibit
+    success_url = '/institutions/'
 
 #  def exhibit_detail(request):  
 #     return render(request, 'exhibits/exhibit-detail.html', {'exhibits': exhibits}) #May need to alter the portin in curly brackets at the end.

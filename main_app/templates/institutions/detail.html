@@ -44,6 +44,18 @@
           to link to an exhibit deatil page{% endcomment %}
           <td>{{exhibit.exhibit_number}}</td>
           <td>{{exhibit.english_language_text}}</td>
+          <td>
+            <a
+              href="{% url 'exhibit-update' institution.id exhibit.id %}"
+              class="btn warn"
+              >Edit</a
+            >
+            <a
+              href="{% url 'exhibit-delete' institution.id exhibit.id %}"
+              class="btn danger"
+              >Delete</a
+            >
+          </td>
         </tr>
         {% endfor %}
       </tbody>
