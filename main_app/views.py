@@ -31,7 +31,7 @@ def add_exhibit(request, institution_id):
         new_exhibit = form.save(commit=False)
         new_exhibit.institution_id = institution_id
         new_exhibit.save()
-    return redirect('institution-detail', institution_id=instituion_id)
+    return redirect('institution-detail', institution_id=institution_id)
 
 class ExhibitUpdate(UpdateView):
     model = Exhibit
