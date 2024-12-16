@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 class Institution(models.Model):
-    name = models.TextField(max_length=25)
+    name = models.TextField(max_length=200)
     location = models.TextField(max_length=25)
     user = models.ForeignKey(User, on_delete=models.CASCADE) #Add this once the User has been created.
     # Will I want more locations here such as location_english, Location_spanish, location_portugues, so I can render them conditionally based on selected language?
@@ -13,10 +13,10 @@ class Institution(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('institution-detail', kwargs={'institution_id: self.id'})
+        return reverse('institution-detail', kwargs={'institution_id': self.id})
 
 class Exhibit(models.Model):
-    institution_id = models.ForeignKey(Institution, on_delete=models.CASCADE) #Required, look up what to add to ensure it's included
+    institution = models.ForeignKey(Institution, on_delete=models.CASCADE) #Required, look up what to add to ensure it's included
     name = models.CharField(max_length=1000) #Required, look up what to add to ensure it's included
     exhibit_number = models.IntegerField() #Required, look up what to add to ensure it's included
     exhibit_image = models.TextField(max_length=1000) #Optional

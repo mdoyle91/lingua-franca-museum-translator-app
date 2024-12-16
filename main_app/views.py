@@ -26,18 +26,18 @@ class InstitutionCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user  
         return super().form_valid(form)
 
-@login_required
+# @login_required
 def add_exhibit(request, institution_id):
     form = ExhibitsForm(request.POST)
-    if form.is_valid():
-        new_exhibit = form.save(commit=False)
-        new_exhibit.institution_id = institution_id
-        new_exhibit.save()
+    #if form.is_valid():
+    new_exhibit = form.save(commit=False)
+    print('Exhibit:', new_exhibit)
+    new_exhibit.institution_id = institution_id
+    new_exhibit.save()
     return redirect('institution-detail', institution_id=institution_id)
 
 class ExhibitUpdate(LoginRequiredMixin, UpdateView):
     model = Exhibit
-    # Let's disallow the renaming of a cat by excluding the name field!
     fields = '__all__'
     success_url = '/institutions/'
 
