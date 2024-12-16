@@ -22,6 +22,7 @@
           <img
             src="{% static 'images/LinguaFranca_Logo.png' %}"
             alt="The LinguaFranca Logo"
+            id="Logo-Header"
           />
         </a>
       </div>
@@ -29,7 +30,7 @@
         <ul>
           {% if user.is_authenticated %}
           <li>
-            <a href="{% url 'institution-create' %}">Add an Institution</a>
+            <a href="{% url 'institution-index' %}">All Institutions</a>
           </li>
           <li>
             <form id="logout-form" method="post" action="{% url 'logout' %}">
