@@ -4,4 +4,4 @@ from .models import Institution, Exhibit
 admin.site.register(Institution)
 admin.site.register(Exhibit)
 
-# Register your models here.
+
