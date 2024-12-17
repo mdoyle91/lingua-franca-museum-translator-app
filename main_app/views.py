@@ -26,15 +26,14 @@ class InstitutionCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user  
         return super().form_valid(form)
 
-# @login_required
+@login_required
 def add_exhibit(request, institution_id):
     form = ExhibitsForm(request.POST)
-    #if form.is_valid():
-    new_exhibit = form.save(commit=False)
-    print('Exhibit:', new_exhibit)
-    new_exhibit.institution_id = institution_id
-    new_exhibit.save()
-    return redirect('institution-detail', institution_id=institution_id)
+    if form.is_valid():
+        new_exhibit = form.save(commit=False)
+        new_exhibit.institution_id = institution_id
+        new_exhibit.save()
+        return redirect('institution-detail', institution_id=institution_id)
 
 class ExhibitUpdate(LoginRequiredMixin, UpdateView):
     model = Exhibit
@@ -45,5 +44,3 @@ class ExhibitDelete(LoginRequiredMixin, DeleteView):
     model = Exhibit
     success_url = '/institutions/'
 
-#  def exhibit_detail(request):  
-#     return render(request, 'exhibits/exhibit-detail.html', {'exhibits': exhibits}) #May need to alter the portin in curly brackets at the end.

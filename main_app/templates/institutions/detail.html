@@ -42,8 +42,6 @@
         {% for exhibit in institution.exhibit_set.all %}
         <tr>
           <td>{{exhibit.name }}</td>
-          {% comment %}Will likely add tags here similar to base.html to get it
-          to link to an exhibit deatil page{% endcomment %}
           <td>{{exhibit.exhibit_number}}</td>
           <td>{{exhibit.english_language_text}}</td>
           {% if user.is_authenticated %}
